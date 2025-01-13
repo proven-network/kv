@@ -1,3 +1,5 @@
+import { SigningKey } from "@proven-network/crypto";
+
 class ApplicationStringStore {
   storeName: string;
 
@@ -30,12 +32,32 @@ class ApplicationBytesStore {
   }
 }
 
+class ApplicationKeyStore {
+  storeName: string;
+
+  constructor(storeName: string) {
+    this.storeName = storeName;
+  }
+
+  get(key: string): Promise<SigningKey | undefined> {
+    return Promise.resolve(new SigningKey(0));
+  }
+
+  set(key: string, value: SigningKey): Promise<boolean> {
+    return Promise.resolve(true);
+  }
+}
+
 export const getApplicationStore = (storeName: string) => {
   return new ApplicationStringStore(storeName);
 };
 
 export const getApplicationBytesStore = (storeName: string) => {
   return new ApplicationBytesStore(storeName);
+};
+
+export const getApplicationKeyStore = (storeName: string) => {
+  return new ApplicationKeyStore(storeName);
 };
 
 class PersonalStringStore {

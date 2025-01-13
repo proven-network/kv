@@ -1,18 +1,18 @@
 {
   "name": "@proven-network/kv",
   "description": "Access key-value data inside Proven runtime",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://proven.network",
-  "main": "dist/proven-dapp-toolkit.mjs",
+  "main": "dist/kv.mjs",
   "exports": {
     ".": {
       "import": {
         "types": "./types/index.d.ts",
-        "default": "./dist/proven-dapp-toolkit.mjs"
+        "default": "./dist/kv.mjs"
       },
       "require": {
         "types": "./types/index.d.ts",
-        "default": "./dist/proven-dapp-toolkit.umd.js"
+        "default": "./dist/kv.umd.js"
       }
     }
   },
@@ -23,6 +23,9 @@
   ],
   "scripts": {
     "build": "tsc && vite build && vite build --config vite-single-file.config.ts"
+  },
+  "dependencies": {
+    "@proven-network/crypto": "0.0.3"
   },
   "devDependencies": {
     "@babel/preset-env": "7.26.0",
