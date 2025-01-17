@@ -1,7 +1,7 @@
 {
   "name": "@proven-network/kv",
   "description": "Access key-value data inside Proven runtime",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://proven.network",
   "main": "dist/kv.mjs",
   "exports": {
