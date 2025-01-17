@@ -11,8 +11,8 @@ class ApplicationBytesStore {
     return Promise.resolve(new Uint8Array());
   }
 
-  set(key: string, value: Uint8Array): Promise<boolean> {
-    return Promise.resolve(true);
+  set(key: string, value: Uint8Array): Promise<void> {
+    return Promise.resolve();
   }
 }
 
@@ -27,8 +27,8 @@ class ApplicationKeyStore {
     return Promise.resolve(new PrivateKey(0));
   }
 
-  set(key: string, value: PrivateKey): Promise<boolean> {
-    return Promise.resolve(true);
+  set(key: string, value: PrivateKey): Promise<void> {
+    return Promise.resolve();
   }
 }
 
@@ -43,8 +43,8 @@ class ApplicationStringStore {
     return Promise.resolve("");
   }
 
-  set(key: string, value: string): Promise<boolean> {
-    return Promise.resolve(true);
+  set(key: string, value: string): Promise<void> {
+    return Promise.resolve();
   }
 }
 
@@ -60,22 +60,6 @@ export const getApplicationKeyStore = (storeName: string) => {
   return new ApplicationKeyStore(storeName);
 };
 
-class PersonalStringStore {
-  storeName: string;
-
-  constructor(storeName: string) {
-    this.storeName = storeName;
-  }
-
-  get(key: string): Promise<string | undefined> {
-    return Promise.resolve("");
-  }
-
-  set(key: string, value: string): Promise<boolean> {
-    return Promise.resolve(true);
-  }
-}
-
 class PersonalBytesStore {
   storeName: string;
 
@@ -87,8 +71,8 @@ class PersonalBytesStore {
     return Promise.resolve(new Uint8Array());
   }
 
-  set(key: string, value: Uint8Array): Promise<boolean> {
-    return Promise.resolve(true);
+  set(key: string, value: Uint8Array): Promise<void> {
+    return Promise.resolve();
   }
 }
 
@@ -103,8 +87,24 @@ class PersonalKeyStore {
     return Promise.resolve(new PrivateKey(0));
   }
 
-  set(key: string, value: PrivateKey): Promise<boolean> {
-    return Promise.resolve(true);
+  set(key: string, value: PrivateKey): Promise<void> {
+    return Promise.resolve();
+  }
+}
+
+class PersonalStringStore {
+  storeName: string;
+
+  constructor(storeName: string) {
+    this.storeName = storeName;
+  }
+
+  get(key: string): Promise<string | undefined> {
+    return Promise.resolve("");
+  }
+
+  set(key: string, value: string): Promise<void> {
+    return Promise.resolve();
   }
 }
 
@@ -119,31 +119,6 @@ export const getPersonalBytesStore = (storeName: string) => {
 export const getPersonalKeyStore = (storeName: string) => {
   return new PersonalKeyStore(storeName);
 };
-
-class NftStringStore {
-  storeName: string;
-
-  constructor(storeName: string) {
-    this.storeName = storeName;
-  }
-
-  get(
-    nftResourceAddress: string,
-    nftId: string | number | Uint8Array,
-    key: string
-  ): Promise<string | undefined> {
-    return Promise.resolve("");
-  }
-
-  set(
-    nftResourceAddress: string,
-    nftId: string | number | Uint8Array,
-    key: string,
-    value: string
-  ): Promise<boolean> {
-    return Promise.resolve(true);
-  }
-}
 
 class NftBytesStore {
   storeName: string;
@@ -165,8 +140,8 @@ class NftBytesStore {
     nftId: string | number | Uint8Array,
     key: string,
     value: Uint8Array
-  ): Promise<boolean> {
-    return Promise.resolve(true);
+  ): Promise<void> {
+    return Promise.resolve();
   }
 }
 
@@ -190,8 +165,33 @@ class NftKeyStore {
     nftId: string | number | Uint8Array,
     key: string,
     value: PrivateKey
-  ): Promise<boolean> {
-    return Promise.resolve(true);
+  ): Promise<void> {
+    return Promise.resolve();
+  }
+}
+
+class NftStringStore {
+  storeName: string;
+
+  constructor(storeName: string) {
+    this.storeName = storeName;
+  }
+
+  get(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array,
+    key: string
+  ): Promise<string | undefined> {
+    return Promise.resolve("");
+  }
+
+  set(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array,
+    key: string,
+    value: string
+  ): Promise<void> {
+    return Promise.resolve();
   }
 }
 

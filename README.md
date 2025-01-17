@@ -28,12 +28,11 @@ import { getApplicationStore } from "@proven-network/kv";
 const APP_STORE = getApplicationStore("myAppStore");
 
 export const handler = async () => {
-  const success = await APP_STORE.set("key", "value");
+  await APP_STORE.set("myKey", "myValue");
 
-  if (success) {
-    const value = await APP_STORE.get("key")!;
-    console.log(value);
-  }
+  const value = await APP_STORE.get("myKey")!;
+
+  console.log(value); // Output: "myValue"
 };
 ```
 
@@ -45,12 +44,11 @@ import { getApplicationBytesStore } from "@proven-network/kv";
 const APP_BYTES_STORE = getApplicationBytesStore("myAppBytesStore");
 
 export const handler = async () => {
-  const success = await APP_BYTES_STORE.set("key", new Uint8Array([1, 2, 3]));
+  await APP_BYTES_STORE.set("myKey", new Uint8Array([1, 2, 3]));
 
-  if (success) {
-    const value = await APP_BYTES_STORE.get("key");
-    console.log(value);
-  }
+  const value = await APP_BYTES_STORE.get("myKey");
+
+  console.log(value); // Output: Uint8Array(3) [1, 2, 3]
 };
 ```
 
@@ -63,12 +61,11 @@ import { getApplicationKeyStore } from "@proven-network/kv";
 const APP_KEY_STORE = getApplicationKeyStore("myAppKeyStore");
 
 export const handler = async () => {
-  const success = await APP_KEY_STORE.set("key", generateEd25519Key());
+  await APP_KEY_STORE.set("myKey", generateEd25519Key());
 
-  if (success) {
-    const value = await APP_KEY_STORE.get("key");
-    console.log(value);
-  }
+  const value = await APP_KEY_STORE.get("myKey");
+
+  console.log(value); // Output: PrivateKey
 };
 ```
 
@@ -82,12 +79,11 @@ import { getPersonalStore } from "@proven-network/kv";
 const PERSONAL_STORE = getPersonalStore("myPersonalStore");
 
 export const handler = async () => {
-  const success = await PERSONAL_STORE.set("key", "value");
+  await PERSONAL_STORE.set("myKey", "myValue");
 
-  if (success) {
-    const value = await PERSONAL_STORE.get("key");
-    console.log(value);
-  }
+  const value = await PERSONAL_STORE.get("myKey");
+
+  console.log(value); // Output: "myValue"
 };
 ```
 
@@ -99,15 +95,11 @@ import { getPersonalBytesStore } from "@proven-network/kv";
 const PERSONAL_BYTES_STORE = getPersonalBytesStore("myPersonalBytesStore");
 
 export const handler = async () => {
-  const success = await PERSONAL_BYTES_STORE.set(
-    "key",
-    new Uint8Array([1, 2, 3])
-  );
+  await PERSONAL_BYTES_STORE.set("myKey", new Uint8Array([1, 2, 3]));
 
-  if (success) {
-    const value = await PERSONAL_BYTES_STORE.get("key");
-    console.log(value);
-  }
+  const value = await PERSONAL_BYTES_STORE.get("myKey");
+
+  console.log(value); // Output: Uint8Array(3) [1, 2, 3]
 };
 ```
 
@@ -120,12 +112,11 @@ import { getPersonalKeyStore } from "@proven-network/kv";
 const PERSONAL_KEY_STORE = getApplicationKeyStore("myPersonalKeyStore");
 
 export const handler = async () => {
-  const success = await PERSONAL_KEY_STORE.set("key", generateEd25519Key());
+  await PERSONAL_KEY_STORE.set("myKey", generateEd25519Key());
 
-  if (success) {
-    const value = await PERSONAL_KEY_STORE.get("key");
-    console.log(value);
-  }
+  const value = await PERSONAL_KEY_STORE.get("myKey");
+
+  console.log(value); // Output: PrivateKey
 };
 ```
 
@@ -140,12 +131,11 @@ const NFT_STORE = getNftStore("myNftStore");
 const RESOURCE_ADDR = "resource_1qlq38wvrvh5m4kaz6etaac4389qtuycnp89atc8acdfi";
 
 export const handler = async (nftId: string) => {
-  const success = await NFT_STORE.set(RESOURCE_ADDR, nftId, "key", "value");
+  await NFT_STORE.set(RESOURCE_ADDR, nftId, "myKey", "myValue");
 
-  if (success) {
-    const value = await NFT_STORE.get(RESOURCE_ADDR, nftId, "key");
-    console.log(value);
-  }
+  const value = await NFT_STORE.get(RESOURCE_ADDR, nftId, "myKey");
+
+  console.log(value); // Output: "myValue"
 };
 ```
 
@@ -158,17 +148,16 @@ const NFT_BYTES_STORE = getNftBytesStore("myNftBytesStore");
 const RESOURCE_ADDR = "resource_1qlq38wvrvh5m4kaz6etaac4389qtuycnp89atc8acdfi";
 
 export const handler = async (nftId: string) => {
-  const success = await NFT_BYTES_STORE.set(
+  await NFT_BYTES_STORE.set(
     RESOURCE_ADDR,
     nftId,
-    "key",
+    "myKey",
     new Uint8Array([1, 2, 3])
   );
 
-  if (success) {
-    const value = await NFT_BYTES_STORE.get(RESOURCE_ADDR, nftId, "key");
-    console.log(value);
-  }
+  const value = await NFT_BYTES_STORE.get(RESOURCE_ADDR, nftId, "myKey");
+
+  console.log(value); // Output: Uint8Array(3) [1, 2, 3]
 };
 ```
 
@@ -182,15 +171,10 @@ const NFT_KEY_STORE = getNftKeyStore("myNftKeyStore");
 const RESOURCE_ADDR = "resource_1qlq38wvrvh5m4kaz6etaac4389qtuycnp89atc8acdfi";
 
 export const handler = async (nftId: string) => {
-  const success = await NFT_KEY_STORE.set(
-    RESOURCE_ADDR,
-    nftId,
-    generateEd25519Key()
-  );
+  await NFT_KEY_STORE.set(RESOURCE_ADDR, nftId, generateEd25519Key());
 
-  if (success) {
-    const value = await NFT_KEY_STORE.get(RESOURCE_ADDR, nftId);
-    console.log(value);
-  }
+  const value = await NFT_KEY_STORE.get(RESOURCE_ADDR, nftId);
+
+  console.log(value); // Output: PrivateKey
 };
 ```
