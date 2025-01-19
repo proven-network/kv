@@ -33,6 +33,7 @@ export const handler = async () => {
   const value = await APP_STORE.get("myKey")!;
 
   console.log(value); // Output: "myValue"
+  console.log(await APP_STORE.keys()); // Output: ["myKey"]
 };
 ```
 
@@ -49,6 +50,7 @@ export const handler = async () => {
   const value = await APP_BYTES_STORE.get("myKey");
 
   console.log(value); // Output: Uint8Array(3) [1, 2, 3]
+  console.log(await APP_STORE.keys()); // Output: ["myKey"]
 };
 ```
 
@@ -66,6 +68,7 @@ export const handler = async () => {
   const value = await APP_KEY_STORE.get("myKey");
 
   console.log(value); // Output: PrivateKey
+  console.log(await APP_STORE.keys()); // Output: ["myKey"]
 };
 ```
 
@@ -84,6 +87,7 @@ export const handler = async () => {
   const value = await PERSONAL_STORE.get("myKey");
 
   console.log(value); // Output: "myValue"
+  console.log(await PERSONAL_STORE.keys()); // Output: ["myKey"]
 };
 ```
 
@@ -100,6 +104,7 @@ export const handler = async () => {
   const value = await PERSONAL_BYTES_STORE.get("myKey");
 
   console.log(value); // Output: Uint8Array(3) [1, 2, 3]
+  console.log(await PERSONAL_STORE.keys()); // Output: ["myKey"]
 };
 ```
 
@@ -117,6 +122,7 @@ export const handler = async () => {
   const value = await PERSONAL_KEY_STORE.get("myKey");
 
   console.log(value); // Output: PrivateKey
+  console.log(await PERSONAL_STORE.keys()); // Output: ["myKey"]
 };
 ```
 
@@ -136,6 +142,7 @@ export const handler = async (nftId: string) => {
   const value = await NFT_STORE.get(RESOURCE_ADDR, nftId, "myKey");
 
   console.log(value); // Output: "myValue"
+  console.log(await NFT_STORE.keys(RESOURCE_ADDR, nftId)); // Output: ["myKey"]
 };
 ```
 
@@ -158,6 +165,7 @@ export const handler = async (nftId: string) => {
   const value = await NFT_BYTES_STORE.get(RESOURCE_ADDR, nftId, "myKey");
 
   console.log(value); // Output: Uint8Array(3) [1, 2, 3]
+  console.log(await NFT_STORE.keys(RESOURCE_ADDR, nftId)); // Output: ["myKey"]
 };
 ```
 
@@ -176,5 +184,6 @@ export const handler = async (nftId: string) => {
   const value = await NFT_KEY_STORE.get(RESOURCE_ADDR, nftId);
 
   console.log(value); // Output: PrivateKey
+  console.log(await NFT_STORE.keys(RESOURCE_ADDR, nftId)); // Output: ["myKey"]
 };
 ```

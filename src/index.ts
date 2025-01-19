@@ -11,6 +11,10 @@ class ApplicationBytesStore {
     return Promise.resolve(new Uint8Array());
   }
 
+  keys(): Promise<string[]> {
+    return Promise.resolve([]);
+  }
+
   set(key: string, value: Uint8Array): Promise<void> {
     return Promise.resolve();
   }
@@ -27,6 +31,10 @@ class ApplicationKeyStore {
     return Promise.resolve(new PrivateKey(0));
   }
 
+  keys(): Promise<string[]> {
+    return Promise.resolve([]);
+  }
+
   set(key: string, value: PrivateKey): Promise<void> {
     return Promise.resolve();
   }
@@ -41,6 +49,10 @@ class ApplicationStringStore {
 
   get(key: string): Promise<string | undefined> {
     return Promise.resolve("");
+  }
+
+  keys(): Promise<string[]> {
+    return Promise.resolve([]);
   }
 
   set(key: string, value: string): Promise<void> {
@@ -71,6 +83,10 @@ class PersonalBytesStore {
     return Promise.resolve(new Uint8Array());
   }
 
+  keys(): Promise<string[]> {
+    return Promise.resolve([]);
+  }
+
   set(key: string, value: Uint8Array): Promise<void> {
     return Promise.resolve();
   }
@@ -87,6 +103,10 @@ class PersonalKeyStore {
     return Promise.resolve(new PrivateKey(0));
   }
 
+  keys(): Promise<string[]> {
+    return Promise.resolve([]);
+  }
+
   set(key: string, value: PrivateKey): Promise<void> {
     return Promise.resolve();
   }
@@ -101,6 +121,10 @@ class PersonalStringStore {
 
   get(key: string): Promise<string | undefined> {
     return Promise.resolve("");
+  }
+
+  keys(): Promise<string[]> {
+    return Promise.resolve([]);
   }
 
   set(key: string, value: string): Promise<void> {
@@ -135,6 +159,13 @@ class NftBytesStore {
     return Promise.resolve(new Uint8Array());
   }
 
+  keys(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array
+  ): Promise<string[]> {
+    return Promise.resolve([]);
+  }
+
   set(
     nftResourceAddress: string,
     nftId: string | number | Uint8Array,
@@ -160,6 +191,13 @@ class NftKeyStore {
     return Promise.resolve(new PrivateKey(0));
   }
 
+  keys(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array
+  ): Promise<string[]> {
+    return Promise.resolve([]);
+  }
+
   set(
     nftResourceAddress: string,
     nftId: string | number | Uint8Array,
@@ -183,6 +221,13 @@ class NftStringStore {
     key: string
   ): Promise<string | undefined> {
     return Promise.resolve("");
+  }
+
+  keys(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array
+  ): Promise<string[]> {
+    return Promise.resolve([]);
   }
 
   set(
