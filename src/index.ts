@@ -1,6 +1,78 @@
 import { PrivateKey } from "@proven-network/crypto";
 
-class ApplicationBytesStore {
+export type BytesStore = {
+  get(key: string): Promise<Uint8Array | undefined>;
+  keys(): Promise<string[]>;
+  set(key: string, value: Uint8Array): Promise<void>;
+};
+
+export type KeyStore = {
+  get(key: string): Promise<PrivateKey | undefined>;
+  keys(): Promise<string[]>;
+  set(key: string, value: PrivateKey): Promise<void>;
+};
+
+export type StringStore = {
+  get(key: string): Promise<string | undefined>;
+  keys(): Promise<string[]>;
+  set(key: string, value: string): Promise<void>;
+};
+
+export type NftScopedBytesStore = {
+  get(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array,
+    key: string
+  ): Promise<Uint8Array | undefined>;
+  keys(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array
+  ): Promise<string[]>;
+  set(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array,
+    key: string,
+    value: Uint8Array
+  ): Promise<void>;
+};
+
+export type NftScopedKeyStore = {
+  get(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array,
+    key: string
+  ): Promise<PrivateKey | undefined>;
+  keys(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array
+  ): Promise<string[]>;
+  set(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array,
+    key: string,
+    value: PrivateKey
+  ): Promise<void>;
+};
+
+export type NftScopedStringStore = {
+  get(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array,
+    key: string
+  ): Promise<string | undefined>;
+  keys(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array
+  ): Promise<string[]>;
+  set(
+    nftResourceAddress: string,
+    nftId: string | number | Uint8Array,
+    key: string,
+    value: string
+  ): Promise<void>;
+};
+
+class ApplicationBytesStore implements BytesStore {
   storeName: string;
 
   constructor(storeName: string) {
@@ -20,7 +92,7 @@ class ApplicationBytesStore {
   }
 }
 
-class ApplicationKeyStore {
+class ApplicationKeyStore implements KeyStore {
   storeName: string;
 
   constructor(storeName: string) {
@@ -60,19 +132,19 @@ class ApplicationStringStore {
   }
 }
 
-export const getApplicationStore = (storeName: string) => {
-  return new ApplicationStringStore(storeName);
-};
-
-export const getApplicationBytesStore = (storeName: string) => {
+export function getApplicationBytesStore(storeName: string): BytesStore {
   return new ApplicationBytesStore(storeName);
-};
+}
 
-export const getApplicationKeyStore = (storeName: string) => {
+export function getApplicationKeyStore(storeName: string): KeyStore {
   return new ApplicationKeyStore(storeName);
-};
+}
 
-class PersonalBytesStore {
+export function getApplicationStore(storeName: string): StringStore {
+  return new ApplicationStringStore(storeName);
+}
+
+class PersonalBytesStore implements BytesStore {
   storeName: string;
 
   constructor(storeName: string) {
@@ -92,7 +164,7 @@ class PersonalBytesStore {
   }
 }
 
-class PersonalKeyStore {
+class PersonalKeyStore implements KeyStore {
   storeName: string;
 
   constructor(storeName: string) {
@@ -112,7 +184,7 @@ class PersonalKeyStore {
   }
 }
 
-class PersonalStringStore {
+class PersonalStringStore implements StringStore {
   storeName: string;
 
   constructor(storeName: string) {
@@ -132,19 +204,19 @@ class PersonalStringStore {
   }
 }
 
-export const getPersonalStore = (storeName: string) => {
-  return new PersonalStringStore(storeName);
-};
-
-export const getPersonalBytesStore = (storeName: string) => {
+export function getPersonalBytesStore(storeName: string): BytesStore {
   return new PersonalBytesStore(storeName);
-};
+}
 
-export const getPersonalKeyStore = (storeName: string) => {
+export function getPersonalKeyStore(storeName: string): KeyStore {
   return new PersonalKeyStore(storeName);
-};
+}
 
-class NftBytesStore {
+export function getPersonalStore(storeName: string): StringStore {
+  return new PersonalStringStore(storeName);
+}
+
+class NftBytesStore implements NftScopedBytesStore {
   storeName: string;
 
   constructor(storeName: string) {
@@ -176,7 +248,7 @@ class NftBytesStore {
   }
 }
 
-class NftKeyStore {
+class NftKeyStore implements NftScopedKeyStore {
   storeName: string;
 
   constructor(storeName: string) {
@@ -208,7 +280,7 @@ class NftKeyStore {
   }
 }
 
-class NftStringStore {
+class NftStringStore implements NftScopedStringStore {
   storeName: string;
 
   constructor(storeName: string) {
@@ -240,14 +312,14 @@ class NftStringStore {
   }
 }
 
-export const getNftStore = (storeName: string) => {
+export function getNftStore(storeName: string): NftScopedStringStore {
   return new NftStringStore(storeName);
-};
+}
 
-export const getNftBytesStore = (storeName: string) => {
+export function getNftBytesStore(storeName: string): NftScopedBytesStore {
   return new NftBytesStore(storeName);
-};
+}
 
-export const getNftKeyStore = (storeName: string) => {
+export function getNftKeyStore(storeName: string): NftScopedKeyStore {
   return new NftKeyStore(storeName);
-};
+}
